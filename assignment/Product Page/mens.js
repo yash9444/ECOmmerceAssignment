@@ -253,30 +253,84 @@ var mensData = [
     },
   ];
 
-for(let i=0;i<mensData.length;i++){
 
-  let cart = document.createElement("div");
+displayData(mensData);
+function displayData(){
+
+  document.querySelector("#display").innerHTML = "";
+  for(let i=0;i<mensData.length;i++){
+
+    let cart = document.createElement("div");
+    
+    let img = document.createElement("img")
+    img.setAttribute("src",mensData[i].image_url);
   
-  let img = document.createElement("img")
-  img.setAttribute("src",mensData[i].image_url);
-
-  let name = document.createElement("h3")
-  name.innerText = mensData[i].name
-
-  let price = document.createElement("p")
-  price.innerText ="$ "+ mensData[i].price;
-
-  let strikedP = document.createElement("p")
-  strikedP.innerText = "$ " + mensData[i].strikedoffprice
-  strikedP.style.textDecoration = "line-through"
-  strikedP.style.fontStyle = "italic"
-  strikedP.style.color="red"
-
-  let btn = document.createElement("button")
-  btn.innerText = "Add to cart"
-  btn.style.cursor = "pointer"
-  cart.append(img,name,price,strikedP,btn)
-  document.querySelector("#display").append(cart);
+    let name = document.createElement("h3")
+    name.innerText = mensData[i].name
+  
+    let price = document.createElement("p")
+    price.innerText ="$ "+ mensData[i].price;
+  
+    let strikedP = document.createElement("p")
+    strikedP.innerText = "$ " + mensData[i].strikedoffprice
+    strikedP.style.textDecoration = "line-through"
+    strikedP.style.fontStyle = "italic"
+    strikedP.style.color="red"
+  
+    let btn = document.createElement("button")
+    btn.innerText = "Add to cart"
+    btn.style.cursor = "pointer"
+    cart.append(img,name,price,strikedP,btn)
+    document.querySelector("#display").append(cart);
+  }
 }
 
 
+let disSort = document.querySelector("#sortPrice");
+disSort.addEventListener("change",function(){
+  if(sortPrice.value=="Ascending"){
+    mensData.sort(function(a,b){
+      if(a.price>b.price) return 1
+      if(a.price<b.price) return -1
+      return 0
+    })
+    displayData(mensData);
+    
+  }
+  if(sortPrice.value=="Descending"){
+    mensData.sort(function(a,b){
+      if(a.price>b.price) return -1
+      if(a.price<b.price) return 1
+      return 0
+    })
+    displayData(mensData)
+  }
+  if(sortPrice.value=="all"){
+    window.location.reload()
+  }
+})
+
+
+
+
+let nameSort = document.querySelector("#sortName");
+disSort.addEventListener("change",function(){
+  if(sortName.value=="Ascending"){
+    mensData.sort(function(a,b){
+      if(a.name>b.name) return 1
+      if(a.name<b.name) return -1
+      return 0
+    })
+    displayData(mensData);
+    
+  }
+  if(sortName.value=="Descending"){
+    mensData.sort(function(a,b){
+      if(a.name>b.name) return -1
+      if(a.name<b.name) return 1
+      return 0
+    })
+    displayData(mensData)
+  }
+  
+})

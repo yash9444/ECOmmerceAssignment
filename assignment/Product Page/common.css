@@ -8,5 +8,5 @@ h1{
     grid-template-columns:repeat(4,1fr);
     grid-template-rows: repeat(12,auto);
     gap: 20px;
-    text-decoration: lin;
+    margin-top: 70px;
 }

@@ -460,6 +460,7 @@ let productCont = document.getElementById("display")
    displayData(womensData)
 
   function displayData(womensData){
+    document.querySelector("#display").innerHTML = ""
     for(let i=0;i<womensData.length;i++){
 
       let cart = document.createElement("div");
@@ -486,3 +487,27 @@ let productCont = document.getElementById("display")
       document.querySelector("#display").append(cart);
     }   
   }
+
+  let disSort = document.querySelector("#sort");
+  disSort.addEventListener("change",function(){
+    if(sort.value=="Ascending"){
+      womensData.sort(function(a,b){
+        if(a.price>b.price) return 1
+        if(a.price<b.price) return -1
+        return 0
+      })
+      displayData(womensData);
+      
+    }
+    if(sort.value=="Descending"){
+      womensData.sort(function(a,b){
+        if(a.price>b.price) return -1
+        if(a.price<b.price) return 1
+        return 0
+      })
+      displayData(womensData)
+    }
+    if(sort.value=="all"){
+      window.location.reload()
+    }
+  })
